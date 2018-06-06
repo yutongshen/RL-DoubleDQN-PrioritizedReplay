@@ -1,6 +1,7 @@
 # temporary
 *.swp
 *.swo
+*.swn
 
 # private
 private/
