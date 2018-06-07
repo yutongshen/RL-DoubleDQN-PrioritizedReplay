@@ -1,5 +1,5 @@
 # Reinforce Learning Practice
-CartPole - Double Deep Q Network
+Mountain Car (OpenAI gym) - Double Deep Q Network with Prioritized Experience Replay
 
 ## Prerequisite
 - Python 3.6.4
@@ -11,7 +11,7 @@ $ pip install -r requirements.txt
 
 ## Usage
 ```sh
-$ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE]
+$ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr LEARNINGRATE] [-hu HUMANEXP] [-hu--out HUMANEXPOUT] [-score--out SCOREOUT] [-screen SCREEN]
 ```
 
 | optional Options           | Description                                    |
@@ -19,9 +19,16 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE]
 | -h, --help                 | show this help message and exit                |
 | -i ITERATION               | input the iteration of training                |
 | -m MEMORYSIZE              | input the size of memory                       |
+| -b BATCHSIZE               | input the size of batch                        |
+| -lr LEARNINGRATE           | input learning rate                            |
+| -hu HUMANEXP               | input human experience                         |
+| -hu--out HUMANEXPOUT       | human experience output path                   |
+| -score--out SCOREOUT       | score output path                              |
+| -screen SCREEN             | show the screen of game (true/false)           | 
+
 
 ## Game
-![CartPole](img/cartpole.png)
+![MountainCar](https://user-images.githubusercontent.com/8510097/31701297-3ebf291c-b384-11e7-8289-24f1d392fb48.PNG)
 
 ## Algorithm
 - Double Deep Q Network

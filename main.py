@@ -1,11 +1,4 @@
-import gym
-from src.rl import RL
-import matplotlib.pyplot as plt
-import numpy as np
-import sys
-import argparse
-
-def play(game, rl, iteration, human_transition=None, human_ctrl=False):
+def play(game, rl, iteration, human_transition=None, human_ctrl=False, screen=True):
     human_ctrl_cnt   = 0
     human_a          = 0
     step = 0
@@ -26,12 +19,12 @@ def play(game, rl, iteration, human_transition=None, human_ctrl=False):
         descent = 1
         performance = 0
         while not done:
-            game.render()
+            if screen: game.render()
             a = rl.actor(s)
             if human_ctrl:
                 if not human_ctrl_cnt:
                     try:
-                        human_a = int(input('input action: '))
+                        human_a = int(input('input action 0~{}: '.format(game.action_space.n - 1)))
                         if human_a < 0 or human_a > 2:
                             human_a = 1
                     except ValueError:
@@ -49,6 +42,7 @@ def play(game, rl, iteration, human_transition=None, human_ctrl=False):
             rl.store_transition(s, a, r, s_)
             if step >= mem_size:
                 if not start_train:
+                    human_ctrl  = False
                     start_train = True
                     break
                 rl.learn()
@@ -69,6 +63,8 @@ def play(game, rl, iteration, human_transition=None, human_ctrl=False):
     return total_score, human_transition
 
 if __name__ == '__main__':
+    import argparse
+
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-i',
@@ -86,13 +82,39 @@ if __name__ == '__main__':
                         dest='BATCHSIZE',
                         help='input the size of batch')
 
+    parser.add_argument('-lr',
+                        default='0.0005',
+                        dest='LEARNINGRATE',
+                        help='input learning rate')
+
     parser.add_argument('-hu',
                         default='',
                         dest='HUMANEXP',
                         help='input human experience')
 
+    parser.add_argument('-hu--out',
+                        default='',
+                        dest='HUMANEXPOUT',
+                        help='human experience output path')
+
+    parser.add_argument('-score--out',
+                        default='score.pkl',
+                        dest='SCOREOUT',
+                        help='score output path')
+
+    parser.add_argument('-screen',
+                        default='true',
+                        dest='SCREEN',
+                        help='show the screen of game (true/false)')
+
     args = parser.parse_args()
     
+    import gym
+    from src.rl import RL
+    import matplotlib.pyplot as plt
+    import numpy as np
+    import sys
+
     try:
         iteration   = int(args.ITERATION)
         mem_size    = int(args.MEMORYSIZE)
@@ -101,12 +123,18 @@ if __name__ == '__main__':
         print('error: iteration or memory size must be an integer')
         sys.exit()
 
+    try:
+        lr = float(args.LEARNINGRATE)
+    except ValueError:
+        print('error: learning rate must be an number')
+        sys.exit()
+
     # game = gym.make('CartPole-v0')
     game = gym.make('MountainCar-v0')
     game = game.unwrapped
 
-    rl_prioritized = RL(game.observation_space.shape[0] , range(game.action_space.n), batch_size=batch_size, memory_size=mem_size, prior=True, verbose=False)
-    rl_dqn         = RL(game.observation_space.shape[0] , range(game.action_space.n), batch_size=batch_size, memory_size=mem_size, prior=False, verbose=False)
+    rl_prioritized = RL(game.observation_space.shape[0] , range(game.action_space.n), batch_size=batch_size, memory_size=mem_size, prior=True, verbose=False, lr=lr)
+    rl_dqn         = RL(game.observation_space.shape[0] , range(game.action_space.n), batch_size=batch_size, memory_size=mem_size, prior=False, verbose=False, lr=lr)
 
     import pickle
 
@@ -115,14 +143,22 @@ if __name__ == '__main__':
     else:
         with open(args.HUMANEXP, 'rb') as f:
             human_transition = pickle.load(f)
+    
+    hu_ctrl = False if args.HUMANEXPOUT == ''         else True
+    screen  = False if args.SCREEN.upper() == 'FALSE' else True
 
-    score_a, human_transition = play(game, rl_prioritized, iteration, human_transition)
-    score_b, _                = play(game, rl_dqn, iteration, human_transition)
+    print()
+    print("Prioritized experience replay:")
+    score_a, human_transition = play(game, rl_prioritized, iteration, human_transition, human_ctrl=hu_ctrl, screen=screen)
+    print()
+    print("Uniform sampling:")
+    score_b, _                = play(game, rl_dqn, iteration, human_transition, screen=screen)
+    
+    if hu_ctrl:
+        with open(args.HUMANEXPOUT, 'wb') as f:
+            pickle.dump(human_transition, f, -1)
 
-    with open('human_experience.pkl', 'wb') as f:
-        pickle.dump(human_transition, f, -1)
-
-    with open('score.pkl', 'wb') as f:
+    with open(args.SCOREOUT, 'wb') as f:
         pickle.dump({'a': score_a, 'b': score_b}, f, -1)
     
     # score_a = [ sum(score_a[i: i + 500]) for i in range(len(score_a) - 499)]
