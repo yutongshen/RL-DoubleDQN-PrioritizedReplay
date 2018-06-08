@@ -33,9 +33,10 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 ## Algorithm
 - Double Deep Q Network With Prioritized Experience Replay
   - **Input:** minibatch k, step-size η, replay period K and size N, exponents α and β, budget
-  - Initialize replay memory H = Φ ![\Delta](https://latex.codecogs.com/svg.latex?\Delta) = 0, ![p_1](https://latex.codecogs.com/svg.latex?p_1) = 1
+  - Initialize replay memory H = Φ, ![\Delta](https://latex.codecogs.com/svg.latex?\Delta) = 0, ![p_1](https://latex.codecogs.com/svg.latex?p_1) = 1
   - Observe ![S_0](https://latex.codecogs.com/svg.latex?S_0) and choose ![A_0\sim\pi_\theta(S_0)](https://latex.codecogs.com/svg.latex?A_0\sim\pi_\theta%28S_0%29)
-
+  - **for** t = 1 **to** T **do**
+    - Observe ![S_t,R_t,\gamma_t](https://latex.codecogs.com/svg.latex?S_t,R_t,\gamma_t)
 
   - Initialize Q network with parameters θ
   - Initialize enviroment and get current state s
