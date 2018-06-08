@@ -52,7 +52,17 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
     - Choose action ![A_t\sim\pi_\theta(S_t)](https://latex.codecogs.com/svg.latex?A_t\sim\pi_\theta%28S_t%29)
   - **end for**
 
+## Setting Reward
+- According to [OpenAI gym](https://github.com/openai/gym/wiki/MountainCar-v0), we have:
+  - Observation
+  | Num | Observation | Min   | Max  |
+  | --- | ---         | ---   | ---  |
+  | 0   | position    | -1.2  | 0.6  |
+  | 1   | velocity    | -0.07 | 0.07 |
+- So we modify reward: ![R\leftarrow\frac{|p+0.52|}{1.12}+\frac{|v|}{/0.07}+1.0](https://latex.codecogs.com/svg.latex?R\leftarrow\frac{|p+0.52|}{1.12}+\frac{|v|}{/0.07}+1.0)
+
 ## Performance
+
 ![b16](img/b16.png)
 ![b32](img/b32.png)
 ![b64](img/b64.png)
