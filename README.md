@@ -55,11 +55,14 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 ## Setting Reward
 - According to [OpenAI gym](https://github.com/openai/gym/wiki/MountainCar-v0), we have:
   - Observation
+
   | Num | Observation | Min   | Max  |
   | --- | ---         | ---   | ---  |
   | 0   | position    | -1.2  | 0.6  |
   | 1   | velocity    | -0.07 | 0.07 |
+
 - So we modify reward: ![R\leftarrow\frac{|p+0.52|}{1.12}+\frac{|v|}{/0.07}+1.0](https://latex.codecogs.com/svg.latex?R\leftarrow\frac{|p+0.52|}{1.12}+\frac{|v|}{/0.07}+1.0)
+  - Such that car move with higher velocity and closer edge
 
 ## Performance
 
