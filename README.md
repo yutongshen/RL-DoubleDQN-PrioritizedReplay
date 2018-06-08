@@ -39,7 +39,10 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
     - Observe ![S_t,R_t,\gamma_t](https://latex.codecogs.com/svg.latex?S_t,R_t,\gamma_t)
     - Store transition ![(S_t−1,A_t−1,R_t,\gamma_t,S_t)](https://latex.codecogs.com/svg.latex?%28S_{t−1},A_{t−1},R_t,\gamma_t,S_t%29) in H with maximal priority ![pt=maxitpi](https://latex.codecogs.com/svg.latex?p_t=\max_{i<t}p_i)
     - **if** t ≡ 0 mod K **then**
-      - Sample transition ![j\simP(j)=\frac{p_j^\alpha}{\sum_ip_i^\alpha}](https://latex.codecogs.com/svg.latex?j\sim%20P%28j%29=\frac{p_j^\alpha}{\sum_ip_i^\alpha})
+      - **for** j = 1 **to** k **do**
+        - Sample transition ![j\simP(j)=\frac{p_j^\alpha}{\sum_ip_i^\alpha}](https://latex.codecogs.com/svg.latex?j\sim%20P%28j%29=\frac{p_j^\alpha}{\sum_ip_i^\alpha})
+        - Compute importance-sampling weight ![w_j=(N\cdotP(j))^{−\beta}/\max_iw_i](https://latex.codecogs.com/svg.latex?w_j=%28N\cdotP%28j%29%29^{−\beta}/\max_iw_i)
+
 
 
 
