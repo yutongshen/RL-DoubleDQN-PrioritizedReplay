@@ -52,6 +52,13 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
     - Choose action ![A_t\sim\pi_\theta(S_t)](https://latex.codecogs.com/svg.latex?A_t\sim\pi_\theta%28S_t%29)
   - **end for**
 
+## Performance
+![b16](img/b16.png)
+![b32](img/b32.png)
+![b64](img/b64.png)
+![lr0005](img/b32.png)
+![lr001](img/lr001.png)
+![lr01](img/lr01.png)
 
 ## Authors
 [Yu-Tong Shen](https://github.com/yutongshen/)
