@@ -37,7 +37,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
   - Observe ![S_0](https://latex.codecogs.com/svg.latex?S_0) and choose ![A_0\sim\pi_\theta(S_0)](https://latex.codecogs.com/svg.latex?A_0\sim\pi_\theta%28S_0%29)
   - **for** t = 1 **to** T **do**
     - Observe ![S_t,R_t,\gamma_t](https://latex.codecogs.com/svg.latex?S_t,R_t,\gamma_t)
-    - Store transition ![(S_t−1, A_t−1, R_t, \gamma_t, S_t)](%28S_{t−1}, A_{t−1}, R_t, \gamma_t, S_t%29) in H with maximal priority ![pt=maxitpi](p_t=\max_{i<t}p_i)
+    - Store transition ![(S_t−1, A_t−1, R_t, \gamma_t, S_t)](%28S_{t−1}, A_{t−1}, R_t, \gamma_t, S_t%29) in H with maximal priority ![pt=maxitpi](https://latex.codecogs.com/svg.latex?p_t=\max_{i<t}p_i)
 
   - Initialize Q network with parameters θ
   - Initialize enviroment and get current state s
