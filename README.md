@@ -43,22 +43,15 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
         - Sample transition ![j\simP(j)=\frac{p_j^\alpha}{\sum_ip_i^\alpha}](https://latex.codecogs.com/svg.latex?j\sim%20P%28j%29=\frac{p_j^\alpha}{\sum_ip_i^\alpha})
         - Compute importance-sampling weight ![w_j=(N\cdotP(j))^{−\beta}/\max_iw_i](https://latex.codecogs.com/svg.latex?w_j=%28N\cdot%20P%28j%29%29^{%2D\beta}/\max_iw_i)
         - Compute TD-error ![\delta_j=R_j+\gamma_jQ_{target}(S_j,argmax_aQ(S_j,a))−Q(S_{j−1},A_{j−1})](https://latex.codecogs.com/svg.latex?\delta_j=R_j+\gamma_jQ_{target}%28S_j,argmax_aQ%28S_j,a%29%29%2DQ%28S_{j−1},A_{j−1}%29)
+        - Update transition priority ![p_j\leftarrow|δ_j|](https://latex.codecogs.com/svg.latex?p_j\leftarrow|δ_j|)
+        - Accumulate weight-change ![\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\Delta_\thetaQ(S_{j−1},A_{j−1})](https://latex.codecogs.com/svg.latex?\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\Delta_\theta%20Q%28S_{j−1},A_{j−1}%29)
+      - **end for**
+      - Update weights ![\theta\leftarrow\theta+\thi\cdot\Delta](https://latex.codecogs.com/svg.latex?\theta\leftarrow\theta+\thi\cdot\Delta), reset ∆ = 0
+      - From time to time copy weights into target network ![\theta_{target}\leftarrow\theta](https://latex.codecogs.com/svg.latex?\theta_{target}\leftarrow\theta)
+    - **end if**
+    - Choose action ![A_t\sim\pi_\theta(S_t)](https://latex.codecogs.com/svg.latex?A_t\sim\pi_\theta%28S_t%29)
+  - **end for**
 
-
-
-
-
-  - Initialize Q network with parameters θ
-  - Initialize enviroment and get current state s
-  - According to s, Actor will give an action a: (ε-Greedy, e.g. ε = 0.9)
-    - 10%: random choose one of actions 
-    - 90%: choose the action with the highest ![Q(s:\theta)](https://latex.codecogs.com/svg.latex?Q%28s;\theta%29)
-  - Take the action, and observe the reward, r, as well as the new state, s'.
-  - Update the θ for the state using the observed reward and the maximum reward possible for the next state.
-    - ![L=(r+\gammaQ(s',argmax\_{a'}Q(s',a';\theta);\theta^{-})-Q(s,a:\theta))^{2}](https://latex.codecogs.com/svg.latex?L=%28r+\gamma%20Q%28s',argmax_{a%27}Q%28s%27,a%27;\theta%29;\theta^{-}%29-Q%28s,a;\theta%29%29^{2})
-    - ![\theta=\theta-lr\triangledown\_\thetaL](https://latex.codecogs.com/svg.latex?\theta=\theta-lr\triangledown_\theta%20L)
-  - Every C steps reset ![\theta^{-}\leftarrow\theta](https://latex.codecogs.com/svg.latex?\theta^{-}\leftarrow\theta)
-  - Set the state to the new state, and repeat the process until a terminal state is reached.
 
 ## Authors
 [Yu-Tong Shen](https://github.com/yutongshen/)
