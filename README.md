@@ -93,10 +93,13 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 > - but as the learning rate increases, both its average reward are higher.
 
 ### Summary
+- Prioritized experience replay is better than uniform sampling
+  - **More robust**:
+  - **Has better score at the beginning **:
 
 ## Conclusion
 - **DQN belong to value-base**: 
-  - The DQN agent always choose action via action-value function (neural network). Because action-value function (neural network) will tell which action is best, when the agent want to choose action. In addition, This agent use ε-greedy method, so that it will explore the environment (randomly choose action) with ε probability.
+  - The DQN agent always choose action via its action-value function (neural network). the action-value function (neural network) will tell which action is best, when it want to choose action. In addition, This agent use ε-greedy method, so that it will explore the environment (randomly choose action) with ε probability.
 - **This algorithms is off-policy**:
   - An on-policy agent update self based on its current action derived from the current policy, whereas its off-policy counterpart update self based on the action obtained from another policy. In this algorithm, the agent sample transitions in the replay memory, but the replay memory contains a lot of different policies and those are almost not the current policy. So this algorithms is off-policy.
 - **The replay memory method break the temporal correlations**:
