@@ -66,21 +66,21 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
   - it makes car moving with higher velocity and closer edge
 
 ## Performance
-- note: The value of y-axis is original reward in episode, it is not used to update agent.
-  - **Original reword**: -1 for each time step, until the goal position of 0.5 is reached. As with MountainCarContinuous v0, there is no penalty for climbing the left hill, which upon reached acts as a wall.
-- note: Both red and blue are using double deep Q network.
+note: The value of y-axis is original reward in episode, it is not used to update agent.
+>  **Original reword**: -1 for each time step, until the goal position of 0.5 is reached. As with MountainCarContinuous v0, there is no penalty for climbing the left hill, which upon reached acts as a wall.
+note: Both red and blue are using double deep Q network.
 
-### **batch size: 16**, learning rate: 0.0005
+- **batch size: 16**, learning rate: 0.0005
 ![b16](img/b16.png)
-###**batch size: 32**, learning rate: 0.0005
+- **batch size: 32**, learning rate: 0.0005
 ![b32](img/b32.png)
-### **batch size: 64**, learning rate: 0.0005
+- **batch size: 64**, learning rate: 0.0005
 ![b64](img/b64.png)
-### batch size: 32, **learning rate: 0.0005**
+- batch size: 32, **learning rate: 0.0005**
 ![lr0005](img/b32.png)
-### batch size: 32, **learning rate: 0.001**
+- batch size: 32, **learning rate: 0.001**
 ![lr001](img/lr001.png)
-### batch size: 32, **learning rate: 0.01**
+- batch size: 32, **learning rate: 0.01**
 ![lr01](img/lr01.png)
 
 ## Authors
