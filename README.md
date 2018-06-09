@@ -77,8 +77,10 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 ![b32](img/b32.png)
 - **batch size: 64**, learning rate: 0.0005
 ![b64](img/b64.png)
-> As the batch size increases, double DQN without prioritized experience replay will be more stable (with lower standard deviation).
-> However, double DQN with prioritized experience replay remains stable throughout. 
+
+> - As the batch size increases, double DQN without prioritized experience replay will be more stable (with lower standard deviation).
+> - However, double DQN with prioritized experience replay remains stable throughout. 
+
 ### Changing the learning rate
 - batch size: 32, **learning rate: 0.0005**
 ![lr0005](img/b32.png)
@@ -87,8 +89,8 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 - batch size: 32, **learning rate: 0.01**
 ![lr01](img/lr01.png)
 
-> No matter which double DQN with or without prioritized experience replay. It will be unstable when we give a larger learning rate.
-> but as the learning rate increases, both its average reward are higher.
+> - No matter which double DQN with or without prioritized experience replay. It will be unstable when we give a larger learning rate.
+> - but as the learning rate increases, both its average reward are higher.
 
 ### Summary
 
