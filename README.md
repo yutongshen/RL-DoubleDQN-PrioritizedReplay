@@ -67,15 +67,19 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 
 ## Performance
 > - note 1: The value of y-axis is original reward in episode, it is not used to update agent.
->   - **Original reword**: -1 for each time step, until the goal position of 0.5 is reached. As with MountainCarContinuous v0, there is no penalty for climbing the left hill, which upon reached acts as a wall.
+>   - **Original reword**: -1 for each time step, until the goal position of 0.5 is reached.
 > - note 2: Both red and blue are using double deep Q network.
 
+### Changing the batch size
 - **batch size: 16**, learning rate: 0.0005
 ![b16](img/b16.png)
 - **batch size: 32**, learning rate: 0.0005
 ![b32](img/b32.png)
 - **batch size: 64**, learning rate: 0.0005
 ![b64](img/b64.png)
+> As the batch size increases, double DQN without prioritized experience replay will be more stable (with lower standard deviation).
+> However, double DQN with prioritized experience replay remains stable throughout. 
+### Changing the learning rate
 - batch size: 32, **learning rate: 0.0005**
 ![lr0005](img/b32.png)
 - batch size: 32, **learning rate: 0.001**
@@ -83,9 +87,14 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 - batch size: 32, **learning rate: 0.01**
 ![lr01](img/lr01.png)
 
+> No matter which double DQN with or without prioritized experience replay. It will be unstable when we give a larger learning rate.
+> but as the learning rate increases, both its average reward are higher.
+
+### Summary
+
 ## Conclusion
 - **DQN belong to value-base**: The agent always choose action via action-value function (neural network). Because action-value function (neural network) will tell which action is best, when the agent want to choose action. In addition, The agent use ε-greedy method, so that it will explore the environment (random choose action) with ε probability.
 - **This algorithms is off-policy**: An on-policy agent update self based on its current action derived from the current policy, whereas its off-policy counterpart update self based on the action obtained from another policy. In this algorithm, the agent sample transitions in the replay memory, but the replay memory contains a lot of different policies and those are almost not the current policy. So this algorithms is off-policy.
-
+- **The replay memory method break the temporal correlations**: In a deep Q network agent, it often randomly sample transition in replay memory. It means old and new transitions will be mixed, so that the temporal correlations will be broken. In addition, The replay memory method also makes rare experience will be used for more then just signle update.
 ## Authors
 [Yu-Tong Shen](https://github.com/yutongshen/)
