@@ -95,7 +95,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 ### Summary
 - Prioritized experience replay is better than uniform sampling
   - **More robust**:
-  - **Has better score at the beginning **:
+  - **Has better score at the beginning**:
 
 ## Conclusion
 - **DQN belong to value-base**: 
