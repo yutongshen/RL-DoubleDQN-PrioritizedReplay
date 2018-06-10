@@ -37,14 +37,14 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
   - Observe ![S_0](https://latex.codecogs.com/svg.latex?S_0) and choose ![A_0\sim\pi_\theta(S_0)](https://latex.codecogs.com/svg.latex?A_0\sim\pi_\theta%28S_0%29)
   - **for** t = 1 **to** T **do**
     - Observe ![S_t,R_t,\gamma_t](https://latex.codecogs.com/svg.latex?S_t,R_t,\gamma_t)
-    - Store transition ![(S_t−1,A_t−1,R_t,\gamma_t,S_t)](https://latex.codecogs.com/svg.latex?%28S_{t−1},A_{t−1},R_t,\gamma_t,S_t%29) in H with maximal priority ![pt=maxitpi](https://latex.codecogs.com/svg.latex?p_t=\max_{i<t}p_i)
+    - Store transition ![(S_t%2D1,A_t%2D1,R_t,\gamma_t,S_t)](https://latex.codecogs.com/svg.latex?%28S_{t%2D1},A_{t%2D1},R_t,\gamma_t,S_t%29) in H with maximal priority ![pt=maxitpi](https://latex.codecogs.com/svg.latex?p_t=\max_{i<t}p_i)
     - **if** t ≡ 0 mod K **then**
       - **for** j = 1 **to** k **do**
         - Sample transition ![j\simP(j)=\frac{p_j^\alpha}{\sum_ip_i^\alpha}](https://latex.codecogs.com/svg.latex?j\sim%20P%28j%29=\frac{p_j^\alpha}{\sum_ip_i^\alpha})
-        - Compute importance-sampling weight ![w_j=(N\cdotP(j))^{−\beta}/\max_iw_i](https://latex.codecogs.com/svg.latex?w_j=%28N\cdot%20P%28j%29%29^{%2D\beta}/\max_iw_i)
-        - Compute TD-error ![\delta_j=R_j+\gamma_jQ_{target}(S_j,argmax_aQ(S_j,a))−Q(S_{j−1},A_{j−1})](https://latex.codecogs.com/svg.latex?\delta_j=R_j+\gamma_jQ_{target}%28S_j,argmax_aQ%28S_j,a%29%29%2DQ%28S_{j−1},A_{j−1}%29)
-        - Update transition priority ![p_j\leftarrow|δ_j|](https://latex.codecogs.com/svg.latex?p_j\leftarrow|δ_j|)
-        - Accumulate weight-change ![\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\Delta_\thetaQ(S_{j−1},A_{j−1})](https://latex.codecogs.com/svg.latex?\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\Delta_\theta%20Q%28S_{j−1},A_{j−1}%29)
+        - Compute importance-sampling weight ![w_j=(N\cdotP(j))^{%2D\beta}/\max_iw_i](https://latex.codecogs.com/svg.latex?w_j=%28N\cdot%20P%28j%29%29^{%2D\beta}/\max_iw_i)
+        - Compute TD-error ![\delta_j=R_j+\gamma_jQ_{target}(S_j,argmax_aQ(S_j,a))%2DQ(S_{j%2D1},A_{j%2D1})](https://latex.codecogs.com/svg.latex?\delta_j=R_j+\gamma_jQ_{target}%28S_j,argmax_aQ%28S_j,a%29%29%2DQ%28S_{j%2D1},A_{j%2D1}%29)
+        - Update transition priority ![p_j\leftarrow|δ_j|](https://latex.codecogs.com/svg.latex?p_j\leftarrow\delta_j|)
+        - Accumulate weight-change ![\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\Delta_\thetaQ(S_{j%2D1},A_{j%2D1})](https://latex.codecogs.com/svg.latex?\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\Delta_\theta%20Q%28S_{j%2D1},A_{j%2D1}%29)
       - **end for**
       - Update weights ![\theta\leftarrow\theta+\eta\cdot\Delta](https://latex.codecogs.com/svg.latex?\theta\leftarrow\theta+\eta\cdot\Delta), reset ∆ = 0
       - From time to time copy weights into target network ![\theta_{target}\leftarrow\theta](https://latex.codecogs.com/svg.latex?\theta_{target}\leftarrow\theta)
