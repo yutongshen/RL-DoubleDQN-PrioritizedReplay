@@ -65,6 +65,13 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
   - The range of reward will be -1 to +1
   - it makes car moving with higher velocity and closer edge
 
+## Analysis
+- Prioritized experience replay have 2 issue
+  - **lead to a loss of diversity**:
+    - Using stochastic prioritization, it makes all transition will be sampled with some probability. Therefor, this problem will alleviate.
+  - **Introduce bias**:
+    - This algorthm using importance sampling weight to prevent that some high priority transitions become the main of updated transitions.
+
 ## Performance
 > - note 1: The value of y-axis is original reward in episode, it is not used to update agent.
 >   - **Original reward**: -1 for each time step, until the goal position of 0.5 is reached.
