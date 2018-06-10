@@ -81,7 +81,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
     - `Memory` has to calculate priority for `SumTree` and importance-sampling weight for `RL`
   - **RL**
     - This is main part of the agent.
-    - Choocing action via `actor()`. Using -greedy metho, that is, the agent randomly chooce action with probability. As times of updating increass, will become smaller
+    - Choocing action via `actor()`. Using ε-greedy metho, that is, the agent randomly chooce action wit ε probability. As times of updating increass ε will become smaller
     - Learning via `learn()`. The agent update self by the transitions that sampling in replay memory, and need product with importance-sampling weight when computing loss.
 
 ## Performance
