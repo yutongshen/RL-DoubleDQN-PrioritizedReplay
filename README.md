@@ -46,7 +46,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
         - Update transition priority ![p_j\leftarrow|δ_j|](https://latex.codecogs.com/svg.latex?p_j\leftarrow|δ_j|)
         - Accumulate weight-change ![\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\Delta_\thetaQ(S_{j−1},A_{j−1})](https://latex.codecogs.com/svg.latex?\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\Delta_\theta%20Q%28S_{j−1},A_{j−1}%29)
       - **end for**
-      - Update weights ![\theta\leftarrow\theta+\thi\cdot\Delta](https://latex.codecogs.com/svg.latex?\theta\leftarrow\theta+\thi\cdot\Delta), reset ∆ = 0
+      - Update weights ![\theta\leftarrow\theta+\eta\cdot\Delta](https://latex.codecogs.com/svg.latex?\theta\leftarrow\theta+\eta\cdot\Delta), reset ∆ = 0
       - From time to time copy weights into target network ![\theta_{target}\leftarrow\theta](https://latex.codecogs.com/svg.latex?\theta_{target}\leftarrow\theta)
     - **end if**
     - Choose action ![A_t\sim\pi_\theta(S_t)](https://latex.codecogs.com/svg.latex?A_t\sim\pi_\theta%28S_t%29)
@@ -67,8 +67,8 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 
 ## Performance
 > - note 1: The value of y-axis is original reward in episode, it is not used to update agent.
->   - **Original reword**: -1 for each time step, until the goal position of 0.5 is reached.
-> - note 2: Both red and blue are using double deep Q network.
+>   - **Original reward**: -1 for each time step, until the goal position of 0.5 is reached.
+> - note 2: No matter which red and blue are using double deep Q network.
 
 ### Changing the batch size
 - **batch size: 16**, learning rate: 0.0005
@@ -89,8 +89,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 - batch size: 32, **learning rate: 0.01**
 ![lr01](img/lr01.png)
 
-> - No matter which double DQN with or without prioritized experience replay. It will be unstable when we give a larger learning rate.
-> - but as the learning rate increases, both its average reward are higher.
+> - As the learning rate increases, both its average reward are higher.
 
 ### Summary
 - Prioritized experience replay is better than uniform sampling
