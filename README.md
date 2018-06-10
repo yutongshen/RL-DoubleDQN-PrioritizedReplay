@@ -68,7 +68,9 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 ## Performance
 > - note 1: The value of y-axis is original reward in episode, it is not used to update agent.
 >   - **Original reward**: -1 for each time step, until the goal position of 0.5 is reached.
-> - note 2: No matter which red and blue are using double deep Q network.
+> - note 2: No matter which red or blue line are using double deep Q network.
+> - note 3: Both its replay memory size are 10,000
+>   - In this experiment, replay memory contain same 10,000 transitions that using randomly chooce action at the begining. 
 
 ### Changing the batch size
 - **batch size: 16**, learning rate: 0.0005
@@ -96,7 +98,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
   - **More robust**:
     - In a prioritized experience replay agent, all new transitions arrive without a known TD-error, so we put them at maximal priority in order to guarantee that all experience is seen at least once.
   - **Has better score at the beginning**:
-    - In the replay memory, there are almost redundant transitions. Using prioritized experience replay method makes rare and task-relevant transitions are sampled more easily, so this method will adapt to the environment earlier than uniform sampling
+    - In the replay memory, there are almost redundant transitions. Using prioritized experience replay method makes rare and task-relevant transitions are sampled more easily, so this method will adapt to the environment earlier than uniform sampling.
 
 ## Conclusion
 - **DQN belong to value-base**: 
