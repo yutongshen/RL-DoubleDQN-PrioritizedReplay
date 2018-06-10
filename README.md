@@ -43,7 +43,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
         - Sample transition ![j\simP(j)=\frac{p_j^\alpha}{\sum_ip_i^\alpha}](https://latex.codecogs.com/svg.latex?j\sim%20P%28j%29=\frac{p_j^\alpha}{\sum_ip_i^\alpha})
         - Compute importance-sampling weight ![w_j=(N\cdotP(j))^{%2D\beta}/\max_iw_i](https://latex.codecogs.com/svg.latex?w_j=%28N\cdot%20P%28j%29%29^{%2D\beta}/\max_iw_i)
         - Compute TD-error ![\delta_j=R_j+\gamma_jQ_{target}(S_j,argmax_aQ(S_j,a))%2DQ(S_{j%2D1},A_{j%2D1})](https://latex.codecogs.com/svg.latex?\delta_j=R_j+\gamma_jQ_{target}%28S_j,argmax_aQ%28S_j,a%29%29%2DQ%28S_{j%2D1},A_{j%2D1}%29)
-        - Update transition priority ![p_j\leftarrow|δ_j|](https://latex.codecogs.com/svg.latex?p_j\leftarro%20|\delta_j|)
+        - Update transition priority ![p_j\leftarrow|δ_j|](https://latex.codecogs.com/svg.latex?p_\leftarrow|\delta_j|)
         - Accumulate weight-change ![\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\triangledown_\thetaQ(S_{j%2D1},A_{j%2D1})](https://latex.codecogs.com/svg.latex?\Delta\leftarrow\Delta+w_j\cdot\delta_j\cdot\triangledown_\theta%20Q%28S_{j%2D1},A_{j%2D1}%29)
       - **end for**
       - Update weights ![\theta\leftarrow\theta+\eta\cdot\Delta](https://latex.codecogs.com/svg.latex?\theta\leftarrow\theta+\eta\cdot\Delta), reset ∆ = 0
