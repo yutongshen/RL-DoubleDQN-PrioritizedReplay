@@ -94,7 +94,9 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 ### Summary
 - Prioritized experience replay is better than uniform sampling
   - **More robust**:
+    - In a prioritized experience replay agent, all new transitions arrive without a known TD-error, so we put them at maximal priority in order to guarantee that all experience is seen at least once.
   - **Has better score at the beginning**:
+    - In the replay memory, there are almost redundant transitions. Using prioritized experience replay method makes rare and task-relevant transitions are sampled more easily, so this method will adapt to the environment earlier than uniform sampling
 
 ## Conclusion
 - **DQN belong to value-base**: 
