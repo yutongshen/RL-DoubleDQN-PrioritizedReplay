@@ -72,7 +72,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 >   - **Introduce bias**:
 >     - This algorthm using importance sampling weight to prevent that some high priority transitions become the main of updated transitions.
 > - We use sum-tree to implement non-uniform sampling
-- In `src/rl.py`, we have 3 classes include `SumTree`, `Memory`, `RL`
+- In `src/rl.py`, we have 3 classes include `SumTree`, `Memory` and `RL`
   - **SumTree**
     - We store transition and priority in this class.
     - It assist non-uniform sampling
@@ -81,7 +81,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
     - `Memory` has to calculate priority for `SumTree` and importance-sampling weight for `RL`
   - **RL**
     - This is main part of the agent.
-    - Choocing action via `actor()`. Using Îµ-greedy metho, that is, the agent randomly chooce action withÎ probability. As times of updating increass, Î will become smaller
+    - Choocing action via `actor()`. Using -greedy metho, that is, the agent randomly chooce action with probability. As times of updating increass, will become smaller
     - Learning via `learn()`. The agent update self by the transitions that sampling in replay memory, and need product with importance-sampling weight when computing loss.
 
 ## Performance
