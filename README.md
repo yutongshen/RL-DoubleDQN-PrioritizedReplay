@@ -115,6 +115,8 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 ### Action-value diagram (prioritized replay)
 ![actval](img/action.png)
 
+- This diagram tell us the agent had learned that it want to push right if speed is positive, conversely, it will want to push left. But the blue (push right) area is larger than red (push left) at right hand side, because the agent know the goal is not far.
+
 ### Summary
 - Prioritized experience replay is better than uniform sampling
   - **More robust**:
