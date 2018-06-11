@@ -122,7 +122,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
   - **More robust**:
     - In a prioritized experience replay agent, all new transitions arrive without a known TD-error, so we put them at maximal priority in order to guarantee that all experience is seen at least once. But uniform sampling agent is not so lucky, maybe some important transitions leave replay memory without update.Therefor, its performance will get higher standard deviation sometime.
   - **Has better score at the beginning**:
-    - In the replay memory, there are almost redundant transitions. Using prioritized experience replay method makes rare and task-relevant transitions are sampled more easily, so this method will adapt to the environment earlier than uniform sampling.
+    - In the replay memory, there are almost redundant transitions. Using prioritized experience replay method makes rare and task-relevant transitions are sampled more easily. But uniform spamling method usually sample redundand transitions, lead uniform spamling method will be slower growth. So we can say prioritized experience replay method will adapt to the environment earlier than uniform sampling.
 
 ## Conclusion
 - **DQN belong to value-base**: 
