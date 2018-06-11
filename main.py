@@ -114,6 +114,9 @@ if __name__ == '__main__':
     import matplotlib.pyplot as plt
     import numpy as np
     import sys
+    import matplotlib
+    import matplotlib.patches as mpatches
+    matplotlib.use('Agg')
 
     try:
         iteration   = int(args.ITERATION)
@@ -161,9 +164,21 @@ if __name__ == '__main__':
     with open(args.SCOREOUT, 'wb') as f:
         pickle.dump({'a': score_a, 'b': score_b}, f, -1)
     
-    # score_a = [ sum(score_a[i: i + 500]) for i in range(len(score_a) - 499)]
-    # score_b = [ sum(score_b[i: i + 500]) for i in range(len(score_b) - 499)]
-
+    pic = rl_prioritized.draw_policy()
+    real_x = np.arange(18)
+    real_y = np.arange(14)
+    real_x = real_x * .1 - 1.2
+    real_y = real_y * .01 - .07
+    print(pic)
+    plt.figure(figsize=(6, 6))
+    plt.imshow(pic, extent=[-1.2,.6,-.7,.7])
+    red_patch   = mpatches.Patch(color='red',   label='push left')
+    green_patch = mpatches.Patch(color='green', label='no push')
+    blue_patch  = mpatches.Patch(color='blue',  label='push right')
+    plt.legend(handles=[red_patch, green_patch, blue_patch])
+    plt.xlabel('position')
+    plt.ylabel('velocity')
+    plt.show()
 
     plt.plot(range(len(score_a)), score_a, c='r', label='DQN with prioritized replay')
     plt.plot(range(len(score_b)), score_b, c='b', label='DQN')

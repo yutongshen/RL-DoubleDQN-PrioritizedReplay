@@ -112,6 +112,9 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 
 > - As the learning rate increases, both its average reward are higher.
 
+### Action-value diagram
+![actval](img/action.png)
+
 ### Summary
 - Prioritized experience replay is better than uniform sampling
   - **More robust**:

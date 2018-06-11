@@ -168,6 +168,17 @@ class RL:
         self.memory.store(transition)
         self.step_cnt += 1
 
+    def draw_policy(self):
+        arr = np.zeros((100, 100, 3), np.int32)
+        for i in range(100):
+            for j in range(100):
+                value = self.q_eval_model.predict([np.array([[i * 0.018 - 1.2, -j * 0.0014 + 0.07]]), np.ones((1, 1))])
+                value[0] = value[0] - value[0].max()
+                value[0] = np.exp(value[0]) + .000001
+                value[0] = value[0] * 768 / np.sum(value[0])
+                arr[j, i] = value[0]
+        return arr
+
     def actor(self, observation):
         if np.random.uniform(0, 1) < self.epsilon:
             action = np.random.choice(self.actions)
