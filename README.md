@@ -66,12 +66,11 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
   - it makes car moving with higher velocity and closer edge
 
 ## Analysis
-> - Prioritized experience replay have 2 issues
->   - **lead to a loss of diversity**:
->     - Using stochastic prioritization, it makes all transition will be sampled with some probability. Therefor, this problem will alleviate.
->   - **Introduce bias**:
->     - This algorthm using importance sampling weight to prevent that some high priority transitions become the main of updated transitions.
-> - We use sum-tree to implement non-uniform sampling
+- Prioritized experience replay have 2 issues
+  - **lead to a loss of diversity**:
+    - Using stochastic prioritization, it makes all transition will be sampled with some probability. Therefor, this problem will alleviate.
+  - **Introduce bias**:
+    - This algorthm using importance sampling weight to prevent that some high priority transitions become the main of updated transitions.
 - In `src/rl.py`, we have 3 classes include `SumTree`, `Memory` and `RL`
   - **SumTree**
     - We store transition and priority in this class.
@@ -81,7 +80,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
     - `Memory` has to calculate priority for `SumTree` and importance-sampling weight for `RL`
   - **RL**
     - This is main part of the agent.
-    - Choocing action via `actor()`. Using ε-greedy metho, that is, the agent randomly chooce action wit ε probability. As times of updating increass ε will become smaller
+    - Choocing action via `actor()`. Using ε-greedy method, that is, the agent randomly chooce action with ε probability. As times of updating increass ε will become smaller.
     - Learning via `learn()`. The agent update self by the transitions that sampling in replay memory, and need product with importance-sampling weight when computing loss.
 
 ## Performance
