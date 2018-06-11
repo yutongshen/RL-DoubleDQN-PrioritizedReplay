@@ -112,7 +112,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 
 > - As the learning rate increases, both its average reward are higher.
 
-### Action-value diagram
+### Action-value diagram (prioritized replay)
 ![actval](img/action.png)
 
 ### Summary

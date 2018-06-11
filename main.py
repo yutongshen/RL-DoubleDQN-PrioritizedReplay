@@ -165,11 +165,7 @@ if __name__ == '__main__':
         pickle.dump({'a': score_a, 'b': score_b}, f, -1)
     
     pic = rl_prioritized.draw_policy()
-    real_x = np.arange(18)
-    real_y = np.arange(14)
-    real_x = real_x * .1 - 1.2
-    real_y = real_y * .01 - .07
-    print(pic)
+
     plt.figure(figsize=(6, 6))
     plt.imshow(pic, extent=[-1.2,.6,-.7,.7])
     red_patch   = mpatches.Patch(color='red',   label='push left')
