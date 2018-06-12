@@ -109,12 +109,12 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 - batch size: 32, **learning rate: 0.01**
 ![lr01](img/lr01.png)
 
-> - As the learning rate increases, both its average reward are higher.
+> - As the learning rate increases, both its average reward are higher. 
 
 ### Action-value diagram (prioritized replay)
 ![actval](img/action.png)
 
-- This diagram tell us the agent had learned that it want to push right if speed is positive, conversely, it will want to push left. But the blue (push right) area is larger than red (push left) at right hand side, because the agent know the goal is not far.
+- This diagram tell us the agent had learned that it want to push right if speed is positive, conversely, it will want to push left. But the blue (push right) area is larger than red (push left) at right hand side, because the agent knows the goal is not far.
 
 ### Summary
 - Prioritized experience replay is better than uniform sampling
