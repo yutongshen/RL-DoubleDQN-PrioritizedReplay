@@ -27,7 +27,7 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 | -screen SCREEN             | show the screen of game (true/false)           | 
 
 
-## Game
+## Environment
 ![MountainCar](https://user-images.githubusercontent.com/8510097/31701297-3ebf291c-b384-11e7-8289-24f1d392fb48.PNG)
 
 ## Algorithm
