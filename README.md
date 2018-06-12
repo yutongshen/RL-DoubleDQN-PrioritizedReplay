@@ -77,11 +77,16 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
     - It assist non-uniform sampling
   - **Memory**
     - This is replay memory, there is sum-tree in this class.
-    - `Memory` has to calculate priority for `SumTree` and importance-sampling weight for `RL`
+    - `Memory` should calculate priority for `SumTree` and importance-sampling weight for `RL`, and maintain priorities of each transitions.
   - **RL**
     - This is main part of the agent.
     - Choocing action via `actor()`. Using ε-greedy method, that is, the agent randomly chooce action with ε probability. As times of updating increass ε will become smaller.
     - Learning via `learn()`. The agent update self by the transitions that sampling in replay memory, and need product with importance-sampling weight when computing loss.
+
+## Configuration
+- epsilon: **0.5 to 0.1**. This value decides greedily or randomly chooce actions. We set 0.5 at the begin, it makes the agent will explore environment. As time passes, the agent become smarter. So we don't need explore with high prabobilty.
+- memory size: **10,000**
+- Parameters of target network update: In the DQN agent, We have 2 neural networks, target network and predict network. In this fomula ![\delta_j=R_j+\gamma_jQ_{target}(S_j,argmax_aQ(S_j,a))%2DQ(S_{j%2D1},A_{j%2D1})](https://latex.codecogs.com/svg.latex?\delta_j=R_j+\gamma_jQ_{target}%28S_j,argmax_aQ%28S_j,a%29%29%2DQ%28S_{j%2D1},A_{j%2D1}%29), target network is ![target](https://latex.codecogs.com/svg.latex?Q_{target}) and predict network is ![target](https://latex.codecogs.com/svg.latex?Q).Then we use **hard update** and **the period is 500**. Means target network will update when predict network training 500 times.
 
 ## Performance
 > - note 1: The value of y-axis is original reward in episode, it is not used to update agent.
@@ -117,10 +122,10 @@ $ python usage: main.py [-h] [-i ITERATION] [-m MEMORYSIZE] [-b BATCHSIZE] [-lr 
 - This diagram tell us the agent had learned that it want to push right if speed is positive, conversely, it will want to push left. But the blue (push right) area is larger than red (push left) at right hand side, because the agent knows the goal is not far.
 
 ### Summary
-- When we change the batch size
+- **When we change the batch size**
   - As the batch size increases, double DQN without prioritized experience replay will be more stable (with lower standard deviation).
   - However, double DQN with prioritized experience replay remains stable throughout. 
-- When we change the learning rate
+- **When we change the learning rate**
   - Although the uniform sampling agent will get higher standard deviation sometime, overall,  As the learning rate increases, both its average reward are higher.
 - Prioritized experience replay is better than uniform sampling
   - **More robust**:
